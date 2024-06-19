@@ -16,6 +16,13 @@ services:
       - mongodb
     networks:
       - myapp-network
+    environment:
+      - OTEL_TRACES_EXPORTER=otlp
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+      - OTEL_NODE_RESOURCE_DETECTORS=env,host,os
+      - OTEL_SERVICE_NAME=order-service
+      - NODE_OPTIONS=--require @opentelemetry/auto-instrumentations-node/register
+      - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
 
   payment:
     build: ./payment-service
@@ -25,6 +32,13 @@ services:
       - mongodb
     networks:
       - myapp-network
+    environment:
+      - OTEL_TRACES_EXPORTER=otlp
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+      - OTEL_NODE_RESOURCE_DETECTORS=env,host,os
+      - OTEL_SERVICE_NAME=payment-service
+      - NODE_OPTIONS=--require @opentelemetry/auto-instrumentations-node/register
+      - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
 
   product:
     build: ./product-service
@@ -34,6 +48,13 @@ services:
       - mongodb
     networks:
       - myapp-network
+    environment:
+      - OTEL_TRACES_EXPORTER=otlp
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+      - OTEL_NODE_RESOURCE_DETECTORS=env,host,os
+      - OTEL_SERVICE_NAME=product-service
+      - NODE_OPTIONS=--require @opentelemetry/auto-instrumentations-node/register
+      - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
 
   user:
     build: ./user-service
@@ -43,6 +64,13 @@ services:
       - mongodb
     networks:
       - myapp-network
+    environment:
+      - OTEL_TRACES_EXPORTER=otlp
+      - OTEL_EXPORTER_OTLP_ENDPOINT=${OTEL_EXPORTER_OTLP_ENDPOINT}
+      - OTEL_NODE_RESOURCE_DETECTORS=env,host,os
+      - OTEL_SERVICE_NAME=user-service
+      - NODE_OPTIONS=--require @opentelemetry/auto-instrumentations-node/register
+      - OTEL_EXPORTER_OTLP_HEADERS=${OTEL_EXPORTER_OTLP_HEADERS}
 
 networks:
   myapp-network:
